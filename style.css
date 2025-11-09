@@ -1,0 +1,185 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to top, #1d2b4a, #78909c); /* Sky/Zeus theme */
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    flex-direction: column;
+    padding: 20px 0;
+}
+
+h1 {
+    text-shadow: 2px 2px 5px #000000;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+.slot-machine {
+    border: 8px ridge #c0c0c0;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+.reels-grid {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 5px solid #4a4a4a;
+    border-radius: 10px;
+    background: #2c2c2c;
+}
+
+.reel-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.symbol {
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #000;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.balance-info h2, .win-info h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.2em;
+    color: #ffd700;
+}
+
+.balance-info p, .win-info p {
+    margin: 0;
+    font-size: 1.5em;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 5px 15px;
+    border-radius: 8px;
+}
+
+.controls {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.bet-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#increase-bet, #decrease-bet {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 2px solid #ffd700;
+    background-color: #4a4a4a;
+    color: white;
+    cursor: pointer;
+}
+
+#bet-display {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#spin-button {
+    padding: 12px 25px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(145deg, #f0c14b, #ddb347);
+    border: 3px solid #c89b3c;
+    color: #111;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0 5px #999;
+}
+
+#spin-button:hover {
+    background: linear-gradient(145deg, #ddb347, #f0c14b);
+}
+
+#spin-button:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+}
+
+#message-container {
+    margin-top: 15px;
+    font-size: 2em;
+    font-weight: bold;
+    min-height: 40px;
+    text-align: center;
+    text-shadow: 3px 3px 5px #000;
+    visibility: hidden;
+}
+
+/* Animations (retained from previous version) */
+.message-reveal { visibility: visible; animation: text-pop 0.5s ease-in-out; }
+@keyframes text-pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+.win-animation { animation: win-pulse 1s infinite, rainbow-text 2s infinite; }
+.big-win-animation { animation: big-win-shake 0.5s infinite, rainbow-text 1s infinite; }
+.super-win-animation { animation: super-win-glow 1.5s infinite, rainbow-text 0.5s infinite; }
+@keyframes win-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes big-win-shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); } 20%, 40%, 60%, 80% { transform: translateX(10px); } }
+@keyframes super-win-glow { 0%, 100% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073; } 50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6; } }
+@keyframes rainbow-text { 0%,100%{color: #ff0000;} 14%{color: #ff7f00;} 28%{color: #ffff00;} 42%{color: #00ff00;} 57%{color: #0000ff;} 71%{color: #4b0082;} 85%{color: #8b00ff;} }
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    body {
+        padding: 5px 0;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .slot-machine {
+        padding: 10px;
+    }
+    .reels-grid {
+        gap: 5px;
+    }
+    .symbol {
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+    }
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #spin-button {
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+    #message-container {
+        font-size: 1.5em;
+    }
+}

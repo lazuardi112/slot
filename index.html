@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesin Slot Zeus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Mesin Slot Zeus</h1>
+    <div class="slot-machine">
+        <div class="reels-grid">
+            <!-- Column 1 -->
+            <div class="reel-col">
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+            </div>
+            <!-- Column 2 -->
+            <div class="reel-col">
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+            </div>
+            <!-- Column 3 -->
+            <div class="reel-col">
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+            </div>
+            <!-- Column 4 -->
+            <div class="reel-col">
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+            </div>
+            <!-- Column 5 -->
+            <div class="reel-col">
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+                <div class="symbol"></div>
+            </div>
+        </div>
+        <div id="message-container"></div>
+    </div>
+
+    <div class="game-info">
+         <div class="balance-info">
+            <h2>SALDO</h2>
+            <p id="balance-display">Rp 100.000</p>
+        </div>
+        <div class="win-info">
+            <h2>KEMENANGAN</h2>
+            <p id="win-display">Rp 0</p>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="bet-controls">
+            <button id="decrease-bet">-</button>
+            <span id="bet-display">Taruhan: Rp 1.000</span>
+            <button id="increase-bet">+</button>
+        </div>
+        <button id="spin-button">SPIN!</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
