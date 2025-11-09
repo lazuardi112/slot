@@ -12,7 +12,18 @@ const decreaseBetButton = document.getElementById('decrease-bet');
 let balance = 100000;
 let currentBet = 1000;
 const betIncrement = 500;
-const symbols = ["🏺", "🛡️", "🔱", "🏛️", "⚡️", "🏺", "🛡️", "🔱"]; // 🏛️ is WILD, ⚡️ is Zeus (high value)
+const symbols = [
+    'public/assets/symbol_0.png',
+    'public/assets/symbol_1.png',
+    'public/assets/symbol_2.png',
+    'public/assets/symbol_3.png',
+    'public/assets/symbol_4.png',
+    'public/assets/symbol_5.png',
+    'public/assets/symbol_6.png',
+    'public/assets/symbol_7.png',
+    'public/assets/symbol_8.png',
+    'public/assets/symbol_9.png'
+];
 
 // --- Event Listeners ---
 spinButton.addEventListener('click', spin);
@@ -68,7 +79,7 @@ function spin() {
         const symbolsInCol = col.querySelectorAll('.symbol');
         const interval = setInterval(() => {
             symbolsInCol.forEach(symbolEl => {
-                symbolEl.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                symbolEl.style.backgroundImage = `url(${symbols[Math.floor(Math.random() * symbols.length)]})`;
             });
         }, 100);
 
@@ -76,7 +87,7 @@ function spin() {
             clearInterval(interval);
             symbolsInCol.forEach((symbolEl, rowIndex) => {
                 const finalSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-                symbolEl.textContent = finalSymbol;
+                symbolEl.style.backgroundImage = `url(${finalSymbol})`;
                 finalGrid[colIndex][rowIndex] = finalSymbol;
             });
 
@@ -96,18 +107,23 @@ function checkWin(grid) {
 
     // --- Check wins row by row ---
     for (let r = 0; r < numRows; r++) {
-        let rowStr = "";
+        let row = [];
         for (let c = 0; c < numCols; c++) {
-            // grid is col-major, so we access it as grid[c][r]
-            rowStr += grid[c][r];
+            row.push(grid[c][r]);
         }
 
         // Check for 5 of a kind
-        if (/^(.)\1\1\1\1$/.test(rowStr)) totalWin += getPayout(rowStr[0]) * 10;
+        if (row.every(val => val === row[0])) {
+            totalWin += getPayout(row[0]) * 10;
+        }
         // Check for 4 of a kind
-        else if (/^(.)\1\1\1/.test(rowStr) || /.(.)\1\1\1$/.test(rowStr)) totalWin += getPayout(rowStr[0]) * 5;
+        else if (row.slice(0, 4).every(val => val === row[0]) || row.slice(1, 5).every(val => val === row[1])) {
+            totalWin += getPayout(row[0]) * 5;
+        }
         // Check for 3 of a kind
-        else if (/^(.)\1\1/.test(rowStr) || /.(.)\1\1./.test(rowStr) || /..(.)\1\1$/.test(rowStr)) totalWin += getPayout(rowStr[0]) * 2;
+        else if (row.slice(0, 3).every(val => val === row[0]) || row.slice(1, 4).every(val => val === row[1]) || row.slice(2, 5).every(val => val === row[2])) {
+            totalWin += getPayout(row[0]) * 2;
+        }
     }
 
     // --- Update balance and display winnings ---
@@ -118,11 +134,11 @@ function checkWin(grid) {
 
         // Determine win type for animation
         if (totalWin > currentBet * 10) {
-            showMessage("SUPER WIN! JACKPOT!");
+            playWinAnimation('jackpot');
         } else if (totalWin > currentBet * 5) {
-            showMessage("BIG WIN!");
+            playWinAnimation('bigWin');
         } else {
-            showMessage("WIN!");
+            playWinAnimation('win');
         }
     } else {
         showMessage("Coba Lagi!");
@@ -130,9 +146,7 @@ function checkWin(grid) {
 }
 
 function getPayout(symbol) {
-    const wild = "🏛️";
-    const zeus = "⚡️";
-    if (symbol === wild || symbol === zeus) {
+    if (symbol.includes('symbol_9')) { // Assuming symbol_9 is the highest value
         return currentBet * 2;
     }
     return currentBet / 2;
