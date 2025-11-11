@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lazuardi112/slot#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "midtrans-client": "^1.4.3"
   }
 }
