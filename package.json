@@ -14,12 +14,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/lazuardi112/slot/issues"
   },
   "homepage": "https://github.com/lazuardi112/slot#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^4.17.1"
   }
 }
